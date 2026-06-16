@@ -5,13 +5,19 @@ import express from "express";
 const app = express();
 const PORT = 8212;
 
-app.use(cors({
-  origin: ['http://localhost:5173','http://localhost:5174','http://46.225.87.125:5173']
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "http://46.225.87.125:5173",
+    ],
+  }),
+);
 
 app.get("/", (req, res) => {
   return res.json({
-    message: "Sevrer is up and running",
+    message: "Star Platinum - Za Wordooo",
   });
 });
 
