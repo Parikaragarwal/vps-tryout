@@ -1,0 +1,30 @@
+name: Deploy tryout App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+   deploy:
+     runs-on: ubuntu-latest
+
+     steps:
+       - name: Checkout code
+         uses: actions/checkout@v4
+
+       - name: Deploy on Nivren
+         uses: appleboy/ssh-action@v1.0.3
+         with:
+           host: 46.225.87.125
+           username: root
+           key: ${{secrets.PRIVATE_KEY}}
+           script: |
+             cd vps-tryout
+             git pull
+             cd server
+             npm install
+             npm run build
+             cd ../client
+             npm install
+             pm2 restart all
